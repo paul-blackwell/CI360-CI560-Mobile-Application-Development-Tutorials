@@ -2,16 +2,26 @@ import React, { useState } from 'react';
 import { StyleSheet, Text, View, Button } from 'react-native';
 
 
-export default function Home() {
-
-  // Initialize showHelloWorld state and set initial state to false
+export default function Home({ navigation }) {
   const [showHelloWorld, setHelloWorld] = useState(false);
+
+  /**
+   * This function will change the screen using 
+   * the navigation passed down in the props from the stack 
+   * navigator 
+   */
+
+  const changeScreen = () => {
+    navigation.navigate('ScreenTwo');
+
+    // this does the same thing 
+    // navigation.push('ScreenTwo'); 
+  }
 
   return (
     <View style={styles.container}>
       <View style={styles.main}>
         <View style={styles.buttonContainer}>
-          {/* Change showHelloWorld to true if button is clicked */}
           <Button
             style={styles.button}
             title="Click me!"
@@ -19,7 +29,15 @@ export default function Home() {
               setHelloWorld(true)
             }} />
         </View>
-        {/* Output 'Hello world' if showHelloWorld state is true */}
+        <View style={styles.buttonContainer}>
+          {/* This button will fire our changeScreen function */}
+          <Button
+            title="Next Screen"
+            onPress={changeScreen}
+            color="#ff5c5c"
+          />
+        </View>
+
         <Text style={styles.text}>{showHelloWorld ? 'Hello world' : ''}</Text>
       </View>
 
@@ -38,7 +56,8 @@ const styles = StyleSheet.create({
     alignItems: 'center'
   },
   buttonContainer: {
-    width: '100%'
+    width: '100%',
+    margin: 10,
   },
   text: {
     paddingVertical: 20,

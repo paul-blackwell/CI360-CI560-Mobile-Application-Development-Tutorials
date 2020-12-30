@@ -23,7 +23,7 @@ export default function Home() {
     })();
   }, []);
 
-
+  // Initialize camera as variable otherwise we will get an error 
   let camera = Camera
 
   // This function will allow the output a picture to the console

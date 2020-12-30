@@ -16,12 +16,14 @@ export default function ScreenTwo() {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
+        backgroundColor: '#FF5C5C'
     },
     main: {
         flex: 1,
         justifyContent: 'center',
-        margin: 10,
-        alignItems: 'center'
+        marginHorizontal: 10,
+        alignItems: 'center',
+        backgroundColor: '#FF5C5C'
     },
     text: {
         paddingVertical: 20,

@@ -5,18 +5,6 @@ import { StyleSheet, Text, View, Button } from 'react-native';
 export default function Home({ navigation }) {
   const [showHelloWorld, setHelloWorld] = useState(false);
 
-  /**
-   * This function will change the screen using 
-   * the navigation passed down in the props from the stack 
-   * navigator 
-   */
-
-  const changeScreen = () => {
-    navigation.navigate('ScreenTwo');
-
-    // this does the same thing 
-    // navigation.push('ScreenTwo'); 
-  }
 
   return (
     <View style={styles.container}>
@@ -30,10 +18,17 @@ export default function Home({ navigation }) {
             }} />
         </View>
         <View style={styles.buttonContainer}>
-          {/* This button will fire our changeScreen function */}
+      
+          {/**
+            * This function in the onPress will change the screen using 
+            * the navigation passed down in the props from the stack 
+            * navigator 
+          */}
           <Button
             title="Next Screen"
-            onPress={changeScreen}
+            onPress={() => {
+              navigation.navigate('ScreenTwo')
+            }}
             color="#ff5c5c"
           />
         </View>

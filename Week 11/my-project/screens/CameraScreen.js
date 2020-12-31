@@ -1,36 +1,62 @@
 import React, { useState, useEffect } from 'react';
 import { StyleSheet, Text, View, Button } from 'react-native';
+import * as Permissions from 'expo-permissions';
+import * as MediaLibrary from 'expo-media-library';
 import { Camera } from 'expo-camera';
+
 
 
 
 export default function CameraScreen() {
 
 
-  // Make hasPermission sate as we will need to update it
+  // Make hasPermission and is recording sate as we will need to update it
   const [hasPermission, setHasPermission] = useState(null);
+  const [isRecording, setIsRecording] = useState(false);
+  
 
-  /**
-   * The Effect Hook lets you perform side effects in function components
-   * we need to do this as we need to await for the user to give
-   * permission of our app to use the camera
-   */
+
+ // This will ask the user for the audio and camera permissions
   useEffect(() => {
     (async () => {
-      const { status } = await Camera.requestPermissionsAsync();
+      const { status, expires, permissions } = await Permissions.getAsync(
+        Permissions.CAMERA_ROLL,
+        Permissions.AUDIO_RECORDING
+      );
       setHasPermission(status === 'granted');
     })();
   }, []);
 
+
   // Initialize camera as variable otherwise we will get an error 
   let camera = Camera
 
-  // This function will allow the output a picture to the console
-  const takePicture = async () => {
-    if (!camera) return
-    const photo = await camera.takePictureAsync()
-    console.log(photo)
+
+  // The MediaLibrary will allow us to save the video
+  const saveVideo = async (video) => {
+    const asset = await MediaLibrary.createAssetAsync(video.uri);
+    if (asset) {
+      setVideo(null); 
+    }
+  };
+
+  // This will Record and save the video (using saveVideo())
+  const startRecord = () => {
+    (async () => {
+      const video = await camera.recordAsync();
+      saveVideo(video)
+    })();
+    setIsRecording(true)
   }
+
+  // This will stop recording the video 
+  const stopRecord = async () => {
+    if (!camera) return
+    camera.stopRecording();
+    setIsRecording(false)
+  }
+
+
 
 
   // If user didn't give permission output text
@@ -54,10 +80,21 @@ export default function CameraScreen() {
             camera = r
           }}
         ></Camera>
-        <Button
-          title="Take a picture"
-          onPress={takePicture}
-        />
+        <View style={styles.buttonContainer}>
+          <Button
+            title={'Start recording'}
+            disabled={isRecording ? true : false}
+            onPress={startRecord}
+          />
+        </View>
+        <View style={styles.buttonContainer}>
+          <Button
+            color={'#ff5c5c'}
+            disabled={isRecording ? false : true}
+            title={'Stop recording'}
+            onPress={stopRecord}
+          />
+        </View>
       </View>
 
     </View>
@@ -72,6 +109,10 @@ const styles = StyleSheet.create({
   camera: {
     height: 500,
     width: '100%',
+  },
+  buttonContainer: {
+    width: '100%',
+    marginTop: 10,
   },
   text: {
     paddingVertical: 20,

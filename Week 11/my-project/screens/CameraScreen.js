@@ -10,13 +10,15 @@ import { Camera } from 'expo-camera';
 export default function CameraScreen() {
 
 
-  // Make hasPermission and is recording sate as we will need to update it
+  /**
+   *  Make hasPermission and is recording state as we will need to update it
+   *  Note: isRecording will be used to toggle the Start/Stop recording buttons
+   */
   const [hasPermission, setHasPermission] = useState(null);
   const [isRecording, setIsRecording] = useState(false);
-  
 
 
- // This will ask the user for the audio and camera permissions
+  // This will ask the user for the audio and camera permissions
   useEffect(() => {
     (async () => {
       const { status, expires, permissions } = await Permissions.getAsync(
@@ -36,7 +38,7 @@ export default function CameraScreen() {
   const saveVideo = async (video) => {
     const asset = await MediaLibrary.createAssetAsync(video.uri);
     if (asset) {
-      setVideo(null); 
+      setVideo(null);
     }
   };
 
@@ -55,6 +57,7 @@ export default function CameraScreen() {
     camera.stopRecording();
     setIsRecording(false)
   }
+
 
 
 
@@ -83,14 +86,14 @@ export default function CameraScreen() {
         <View style={styles.buttonContainer}>
           <Button
             title={'Start recording'}
-            disabled={isRecording ? true : false}
+            disabled={isRecording ? true : false} // toggle based on isRecording state
             onPress={startRecord}
           />
         </View>
         <View style={styles.buttonContainer}>
           <Button
             color={'#ff5c5c'}
-            disabled={isRecording ? false : true}
+            disabled={isRecording ? false : true} // toggle based on isRecording state
             title={'Stop recording'}
             onPress={stopRecord}
           />

@@ -1,23 +1,23 @@
 import React from 'react';
-import { StyleSheet, Text, View, Button } from 'react-native';
+import { StyleSheet, View, Button, Text, FlatList} from 'react-native';
 
+import DATA from '../data/data';
+import Item from '../components/Item';
 
 export default function BookShop({ navigation }) {
-  
+
+
+  const renderItem = ({ item }) => (
+    <Item title={item.title} uri={item.uri} price={item.price} author={item.author} />
+  );
 
   return (
     <View style={styles.container}>
-      <View style={styles.main}>
-        <View style={styles.buttonContainer}>
-          <Button
-            title="Next Screen"
-            onPress={() => {
-              navigation.navigate('Cart')
-            }}
-            color="#ff5c5c"
-          />
-        </View>
-      </View>
+      <FlatList
+        data={DATA}
+        renderItem={renderItem}
+        keyExtractor={item => item.id.toString()}
+      />
     </View>
   );
 }
@@ -25,19 +25,10 @@ export default function BookShop({ navigation }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-  },
-  main: {
-    flex: 1,
-    justifyContent: 'center',
-    margin: 10,
-    alignItems: 'center'
+    margin: 8
   },
   buttonContainer: {
     width: '100%',
     margin: 10,
   },
-  text: {
-    paddingVertical: 20,
-    fontSize: 20,
-  }
 });

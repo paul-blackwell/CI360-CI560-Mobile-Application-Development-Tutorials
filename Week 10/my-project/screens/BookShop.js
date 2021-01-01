@@ -1,10 +1,10 @@
 import React from 'react';
-import { StyleSheet, View, Button, Text, FlatList} from 'react-native';
+import { StyleSheet, View, FlatList} from 'react-native';
 
 import DATA from '../data/data';
 import Item from '../components/Item';
 
-export default function BookShop({ navigation }) {
+export default function BookShop() {
 
 
   const renderItem = ({ item }) => (

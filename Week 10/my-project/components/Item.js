@@ -27,7 +27,20 @@ const Item = ({ title, author, uri, price }) => (
 
 const styles = StyleSheet.create({
     item: {
-        marginBottom: 50
+        borderWidth: 1,
+        borderRadius: 2,
+        borderColor: '#ddd',
+        borderBottomWidth: 0,
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.8,
+        shadowRadius: 2,
+        elevation: 1,
+        // marginLeft: 5,
+        // marginRight: 5,
+        marginTop: 10,
+        marginBottom: 20,
+        padding: 16
     },
     description: {
         marginVertical: 10
@@ -49,7 +62,7 @@ const styles = StyleSheet.create({
 
     },
     buttonContainer: {
-    
+
     },
     button: {
         width: 50

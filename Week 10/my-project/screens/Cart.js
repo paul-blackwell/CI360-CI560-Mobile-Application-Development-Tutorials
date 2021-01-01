@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, FlatList } from 'react-native';
+import { StyleSheet, Text, View, FlatList, Button } from 'react-native';
 
 import CartItem from '../components/CartItem';
 
@@ -23,8 +23,20 @@ export default function Cart() {
                 renderItem={renderItem}
                 keyExtractor={item => item.id.toString()}
             />
-            <View>
-                <Text></Text>
+            <View style={styles.subtotalContainer}>
+                <Text style={styles.subtotalText}>Subtotal</Text>
+                <Text style={styles.subtotalNumber}>$90.00</Text>
+            </View>
+            <View style={styles.subtotalContainer}>
+                <Text style={styles.subtotalText}>Shipping</Text>
+                <Text style={styles.subtotalNumber}>$10.00</Text>
+            </View>
+            <View style={styles.totalContainer}>
+                <Text style={styles.totalText}>Total</Text>
+                <Text style={styles.totalNumber}>$100.00</Text>
+            </View>
+            <View style={styles.checkoutButton}>
+                <Button title="Proceed to checkout" onPress={() => { }} />
             </View>
         </View>
     );
@@ -32,18 +44,41 @@ export default function Cart() {
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1,
         marginHorizontal: 8
     },
-    main: {
-        flex: 1,
-        justifyContent: 'center',
-        marginHorizontal: 10,
-        alignItems: 'center',
-        backgroundColor: '#FF5C5C'
+    subtotalContainer: {
+        flexDirection: 'row',
+        marginVertical: 4
+    },
+    subtotalText: {
+        flex: 3,
+        color: '#767676'
+    },
+    subtotalNumber: {
+        //flex: 1,
+        fontWeight: 'bold',
+        justifyContent: 'flex-end',
+        color: '#767676'
+    },
+    totalContainer: {
+        flexDirection: 'row',
+        marginVertical: 4
+    },
+    totalText: {
+        flex: 3,
+        fontSize: 18
+    },
+    totalNumber: {
+        //flex: 1,
+        fontSize: 18,
+        fontWeight: 'bold',
+        justifyContent: 'flex-end',
     },
     text: {
         paddingVertical: 20,
         fontSize: 20,
+    },
+    checkoutButton: {
+        marginVertical: 16
     }
 });

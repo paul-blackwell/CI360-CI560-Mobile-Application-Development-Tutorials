@@ -1,28 +1,32 @@
 
-import React from 'react';
+import React, { useContext } from 'react';
 import { StyleSheet, View, Text, Image, Button } from 'react-native';
+import { CartContext } from '../context/cart.context';
 
+const Item = ({ title, author, uri, price }) => {
 
-const Item = ({ title, author, uri, price }) => (
+    const { dispatch } = useContext(MovieContext);
 
-    <View style={styles.item}>
-        <Image style={styles.image} source={{ uri: uri }} />
-        <View style={styles.description}>
-            <Text style={styles.title}><Text style={styles.bold}>Title: </Text>{title}</Text>
-            <Text style={styles.author}><Text style={styles.bold}>Author: </Text>{author}</Text>
-            <Text style={styles.price}><Text style={styles.bold}>Price: </Text>£{price.toFixed(2)}</Text>
-        </View>
-        <View style={styles.buttonContainer}>
-            <Button
-                style={styles.button}
-                title="Add to cart"
-                onPress={() => {
+    return (
+        <View style={styles.item} >
+            <Image style={styles.image} source={{ uri: uri }} />
+            <View style={styles.description}>
+                <Text style={styles.title}><Text style={styles.bold}>Title: </Text>{title}</Text>
+                <Text style={styles.author}><Text style={styles.bold}>Author: </Text>{author}</Text>
+                <Text style={styles.price}><Text style={styles.bold}>Price: </Text>£{price.toFixed(2)}</Text>
+            </View>
+            <View style={styles.buttonContainer}>
+                <Button
+                    style={styles.button}
+                    title="Add to cart"
+                    onPress={() => {
 
-                }}
-            />
-        </View>
-    </View>
-);
+                    }}
+                />
+            </View>
+        </View >
+    )
+};
 
 
 const styles = StyleSheet.create({

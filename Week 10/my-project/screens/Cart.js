@@ -55,8 +55,6 @@ const styles = StyleSheet.create({
         color: '#767676'
     },
     subtotalNumber: {
-        //flex: 1,
-        fontWeight: 'bold',
         justifyContent: 'flex-end',
         color: '#767676'
     },

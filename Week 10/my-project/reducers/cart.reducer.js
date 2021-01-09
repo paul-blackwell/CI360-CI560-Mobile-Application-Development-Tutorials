@@ -1,4 +1,4 @@
-import uuid from 'react-native-uuid';
+// import uuid from 'react-native-uuid';
 
 
 //usage 
@@ -9,7 +9,7 @@ import uuid from 'react-native-uuid';
 const reducer = (state, action) => {
     switch (action.type) {
         case "ADD":
-            return [...state, { name: action.book.title, price: action.book.price, author: action.book.author, uri: action.book.uri, id: uuid.v1() }];
+            return [...state, { name: action.book.title, price: action.book.price, author: action.book.author, uri: action.book.uri, id: 1}];
 
         case "REMOVE":
             //return state.filter(todo => todo.id !== action.id);

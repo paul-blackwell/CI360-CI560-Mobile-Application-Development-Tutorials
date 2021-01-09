@@ -1,10 +1,12 @@
-import React from 'react';
-import { StyleSheet, View, FlatList} from 'react-native';
+import React, { useContext } from 'react';
+import { StyleSheet, View, FlatList } from 'react-native';
+
 
 import DATA from '../data/data';
 import Item from '../components/Item';
 
 export default function BookShop() {
+
 
 
   const renderItem = ({ item }) => (

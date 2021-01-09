@@ -1,13 +1,8 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { StyleSheet, Text, View, FlatList, Button } from 'react-native';
+import { CartContext } from '../context/cart.context';
 
 import CartItem from '../components/CartItem';
-
-const dummyData = [
-    { id: 1, title: 'Book 1', author: 'Roxy Traynor', price: 2.00, uri: 'https://images.pexels.com/photos/1181671/pexels-photo-1181671.jpeg' },
-    { id: 2, title: 'Book 2', author: 'Angharad Hull', price: 1.00, uri: 'https://images.pexels.com/photos/4170629/pexels-photo-4170629.jpeg' },
-]
-
 
 
 export default function Cart() {
@@ -16,24 +11,58 @@ export default function Cart() {
         <CartItem title={item.title} uri={item.uri} price={item.price} author={item.author} />
     );
 
+    // Get cart array from the context API
+    const { cart } = useContext(CartContext);
+
+    // Set shipping cost (would come for Database)
+    const shippingCost  = 2.50;
+
+
+    // Get the value of all items in the cart 
+    const cartValue = () => {
+        let total = 0;
+        if (cart.length > 0) {
+            cart.forEach(item => {
+                total += item.price
+            })
+            return total;
+        } else {
+            return 0.00
+        }
+
+    }
+
+    // Get cart total
+    const cartTotal = (shippingCost + cartValue()).toFixed(2);
+
+
+    if (cart.length === 0) {
+        return (
+            <View style={styles.container}>
+                <Text>You currently have no items in the cart.</Text>
+            </View>
+        )
+    }
+
+
     return (
         <View style={styles.container}>
             <FlatList
-                data={dummyData} // will get this from context API
+                data={cart} // will get this from context API
                 renderItem={renderItem}
                 keyExtractor={item => item.id.toString()}
             />
             <View style={styles.subtotalContainer}>
                 <Text style={styles.subtotalText}>Subtotal</Text>
-                <Text style={styles.subtotalNumber}>$90.00</Text>
+                <Text style={styles.subtotalNumber}>${cartValue().toFixed(2)}</Text>
             </View>
             <View style={styles.subtotalContainer}>
                 <Text style={styles.subtotalText}>Shipping</Text>
-                <Text style={styles.subtotalNumber}>$10.00</Text>
+                <Text style={styles.subtotalNumber}>${shippingCost.toFixed(2)}</Text>
             </View>
             <View style={styles.totalContainer}>
                 <Text style={styles.totalText}>Total</Text>
-                <Text style={styles.totalNumber}>$100.00</Text>
+                <Text style={styles.totalNumber}>${cartTotal}</Text>
             </View>
             <View style={styles.checkoutButton}>
                 <Button title="Proceed to checkout" onPress={() => { }} />

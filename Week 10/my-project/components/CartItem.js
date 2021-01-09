@@ -11,7 +11,7 @@ const CartItem = ({ title, author, uri, price }) => (
             <Text style={styles.author}>{author}</Text>
         </View>
         <View style={styles.quantity}>
-            <Text style={styles.quantityText}>x 2</Text>
+            <Text style={styles.quantityText}>x 1</Text>
         </View>
         <View style={styles.price}>
             <Text style={styles.bold}>£{price.toFixed(2)} </Text>

@@ -5,6 +5,8 @@ import { CartContext } from '../context/cart.context';
 
 const Item = ({ title, author, uri, price }) => {
 
+    const { dispatch } = useContext(CartContext);
+
     // function create_UUID(){
     //     var dt = new Date().getTime();
     //     var uuid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
@@ -14,7 +16,7 @@ const Item = ({ title, author, uri, price }) => {
     //     });
     //     return uuid;
     // }
-    
+
     // console.log(create_UUID());
 
     return (
@@ -30,7 +32,7 @@ const Item = ({ title, author, uri, price }) => {
                     style={styles.button}
                     title="Add to cart"
                     onPress={() => {
-
+                        dispatch({ type: "ADD", book: {title: title, price: price, author: author, uri: uri }});
                     }}
                 />
             </View>

@@ -9,8 +9,7 @@
 const reducer = (state, action) => {
     switch (action.type) {
         case "ADD":
-            return [...state, { name: action.book.title, price: action.book.price, author: action.book.author, uri: action.book.uri, id: 1}];
-
+            return [...state, { title: action.book.title, price: action.book.price, author: action.book.author, uri: action.book.uri, id: 1}];
         case "REMOVE":
             //return state.filter(todo => todo.id !== action.id);
             return state;

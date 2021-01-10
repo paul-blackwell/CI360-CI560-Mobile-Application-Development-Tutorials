@@ -8,7 +8,7 @@ import CartItem from '../components/CartItem';
 export default function Cart() {
 
     const renderItem = ({ item }) => (
-        <CartItem title={item.title} uri={item.uri} price={item.price} author={item.author} />
+        <CartItem title={item.title} uri={item.uri} price={item.price} author={item.author} id={item.id} />
     );
 
     // Get cart array from the context API

@@ -7,8 +7,7 @@ const reducer = (state, action) => {
         case "ADD":
             return [...state, { title: action.book.title, price: action.book.price, author: action.book.author, uri: action.book.uri, id: create_UUID()}];
         case "REMOVE":
-            //return state.filter(todo => todo.id !== action.id);
-            return state;
+            return state.filter(book => book.id !== action.id);
         default:
             return state;
     }

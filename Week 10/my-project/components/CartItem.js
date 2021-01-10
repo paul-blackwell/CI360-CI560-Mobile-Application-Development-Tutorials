@@ -1,30 +1,40 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { StyleSheet, View, Text, Image, TouchableOpacity } from 'react-native';
+import { CartContext } from '../context/cart.context';
 import { AntDesign } from '@expo/vector-icons';
 
 
-const CartItem = ({ title, author, uri, price }) => (
+const CartItem = ({ title, author, uri, price, id }) => {
 
-    <View style={styles.item}>
-        <Image style={styles.image} source={{ uri: uri }} />
-        <View style={styles.description}>
-            <Text style={styles.bold}>{title}</Text>
-            <Text style={styles.author}>{author}</Text>
+    const { dispatch } = useContext(CartContext);
+
+    return (
+        <View style={styles.item}>
+            <Image style={styles.image} source={{ uri: uri }} />
+            <View style={styles.description}>
+                <Text style={styles.bold}>{title}</Text>
+                <Text style={styles.author}>{author}</Text>
+            </View>
+            <View style={styles.quantity}>
+                <Text style={styles.quantityText}>x 1</Text>
+            </View>
+            <View style={styles.price}>
+                <Text style={styles.bold}>£{price.toFixed(2)} </Text>
+            </View>
+            <TouchableOpacity
+                style={styles.removeButton}
+                onPress={() => {
+                    dispatch({ type: "REMOVE", id: id })
+                }}
+            >
+                <AntDesign name="close" size={24} color="#000000" />
+            </TouchableOpacity>
         </View>
-        <View style={styles.quantity}>
-            <Text style={styles.quantityText}>x 1</Text>
-        </View>
-        <View style={styles.price}>
-            <Text style={styles.bold}>£{price.toFixed(2)} </Text>
-        </View>
-        <TouchableOpacity
-            style={styles.removeButton}
-            onPress={() => {}}
-        >
-            <AntDesign name="close" size={24} color="#000000" />
-        </TouchableOpacity>
-    </View>
-);
+
+    );
+
+}
+
 
 
 const styles = StyleSheet.create({

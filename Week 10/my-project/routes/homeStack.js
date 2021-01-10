@@ -24,7 +24,7 @@ const HomeStack = createStackNavigator({
                     style={styles.cartButton}
                     onPress={() => navigation.navigate('Cart')}
                 >
-                    <Ionicons name="ios-cart" size={25} color="#000000" />
+                    <Ionicons name="ios-cart" size={24} color="#000000" />
                 </TouchableOpacity>
             )
         }),

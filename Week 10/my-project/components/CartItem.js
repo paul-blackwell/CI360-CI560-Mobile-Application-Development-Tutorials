@@ -1,5 +1,6 @@
 import React from 'react';
-import { StyleSheet, View, Text, Image, Button } from 'react-native';
+import { StyleSheet, View, Text, Image, TouchableOpacity } from 'react-native';
+import { AntDesign } from '@expo/vector-icons';
 
 
 const CartItem = ({ title, author, uri, price }) => (
@@ -16,6 +17,12 @@ const CartItem = ({ title, author, uri, price }) => (
         <View style={styles.price}>
             <Text style={styles.bold}>£{price.toFixed(2)} </Text>
         </View>
+        <TouchableOpacity
+            style={styles.removeButton}
+            onPress={() => {}}
+        >
+            <AntDesign name="close" size={24} color="#000000" />
+        </TouchableOpacity>
     </View>
 );
 
@@ -25,7 +32,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         marginBottom: 20,
         paddingVertical: 16,
-        borderBottomWidth :1,
+        borderBottomWidth: 1,
         borderBottomColor: '#DBDFE0',
     },
     description: {
@@ -56,6 +63,10 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center'
     },
+    removeButton: {
+        justifyContent: 'center',
+        alignItems: 'center'
+    }
 
 });
 

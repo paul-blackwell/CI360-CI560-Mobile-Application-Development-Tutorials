@@ -2,7 +2,7 @@ import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
 
-export default function ScreenTwo() {
+export default function Meals() {
 
     return (
         <View style={styles.container}>
@@ -16,14 +16,11 @@ export default function ScreenTwo() {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#FF5C5C'
     },
     main: {
         flex: 1,
-        justifyContent: 'center',
         marginHorizontal: 10,
         alignItems: 'center',
-        backgroundColor: '#FF5C5C'
     },
     text: {
         paddingVertical: 20,

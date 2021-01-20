@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
-import { StyleSheet, Text, View, FlatList } from 'react-native';
+import { StyleSheet, Text, View, FlatList, TouchableOpacity, Touchable } from 'react-native';
+import { AntDesign } from '@expo/vector-icons';
 import DATA from '../data/data'
 import Item from '../components/Item';
+
 
 export default function Meals() {
 
@@ -22,7 +24,7 @@ export default function Meals() {
         const newUpdatedMeals = meals;
         newUpdatedMeals.forEach(meal => {
             if (meal.id === id) {
-                    meal.quantity++;
+                meal.quantity++;
             }
         })
         updateMeals([...newUpdatedMeals])
@@ -37,7 +39,7 @@ export default function Meals() {
         const newUpdatedMeals = meals;
         newUpdatedMeals.forEach(meal => {
             if (meal.id === id) {
-                if(meal.quantity > 1){
+                if (meal.quantity > 1) {
                     meal.quantity--;
                 }
             }
@@ -58,6 +60,14 @@ export default function Meals() {
         />
     );
 
+    const getTotal = () => {
+        let totalPrice = 0;
+        meals.forEach(meal => {
+            totalPrice += (meal.price * meal.quantity)
+        })
+        return totalPrice.toFixed(2);
+    }
+
 
     return (
         <View style={styles.container}>
@@ -66,13 +76,37 @@ export default function Meals() {
                 renderItem={renderItem}
                 keyExtractor={item => item.id.toString()}
             />
+            <View style={styles.total}>
+                <Text style={styles.totalText} >Total: £{getTotal()}</Text>
+            </View>
+            <TouchableOpacity style={styles.checkout} onPress={() => {}}>
+                <Text style={styles.checkoutText}>Checkout <AntDesign name="arrowright" size={16} color="#ffffff" /></Text>
+            </TouchableOpacity>
+
         </View>
     );
 }
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1,
         marginHorizontal: 28
     },
+    total: {
+        marginBottom: 20
+    },
+    totalText: {
+        color: '#3B4A58'
+    },
+    checkout: {
+        alignItems: 'center',
+        backgroundColor: '#3884FF',
+        padding: 8,
+        borderRadius: 4
+    },
+    checkoutText: {
+        color: '#ffffff',
+    },
+    checkoutIcon: {
+
+    }
 });

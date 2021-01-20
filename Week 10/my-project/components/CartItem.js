@@ -21,12 +21,17 @@ const CartItem = ({ title, author, uri, price, id }) => {
             <View style={styles.price}>
                 <Text style={styles.bold}>£{price.toFixed(2)} </Text>
             </View>
+            {/* TouchableOpacity has an onPress action, so we can wrap  a
+            "Close" icon react component within it, allowing the icon to have
+            onPress functionality like a button component
+            */}
             <TouchableOpacity
                 style={styles.removeButton}
                 onPress={() => {
                     dispatch({ type: "REMOVE", id: id })
                 }}
             >
+                {/* This is just the icon */}
                 <AntDesign name="close" size={24} color="#000000" />
             </TouchableOpacity>
         </View>

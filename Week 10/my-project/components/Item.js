@@ -21,6 +21,7 @@ const Item = ({ title, author, uri, price }) => {
                     style={styles.button}
                     title="Add to cart"
                     onPress={() => {
+                        // This allows us to add the book to the cart CartContext 
                         dispatch({ type: "ADD", book: {title: title, price: price, author: author, uri: uri }});
                     }}
                 />

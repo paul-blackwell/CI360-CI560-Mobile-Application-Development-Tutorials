@@ -1,7 +1,5 @@
 import create_UUID from '../utils/uuid';
 
-
-
 const reducer = (state, action) => {
     switch (action.type) {
         case "ADD":

@@ -1,8 +1,9 @@
 const data = [
-    { id: 1, uri: 'https://images.pexels.com/photos/6186363/pexels-photo-6186363.jpeg' },
-    { id: 2, uri: 'https://images.pexels.com/photos/6194910/pexels-photo-6194910.jpeg' },
-    { id: 3, uri: 'https://images.pexels.com/photos/5117800/pexels-photo-5117800.jpeg' },
-    { id: 4, uri: 'https://images.pexels.com/photos/5999925/pexels-photo-5999925.jpeg' },
+    { id: 1, name: 'Rice', quantity: 1, price: 0.40   },
+    { id: 2, name: 'Beans', quantity: 1, price: 0.20   },
+    { id: 3, name: 'Pizza', quantity: 1, price: 1.80   },
+    { id: 4, name: 'chocolate cake', quantity: 1, price: 2.00  },
+    {id: 5, name: 'Brownie', quantity: 1, price: 1.00   }
 ]
 
 

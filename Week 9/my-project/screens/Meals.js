@@ -48,6 +48,9 @@ export default function Meals() {
     }
 
 
+    /**
+     * This will render each Item in the FlatList
+     */
     const renderItem = ({ item }) => (
         <Item
             id={item.id}
